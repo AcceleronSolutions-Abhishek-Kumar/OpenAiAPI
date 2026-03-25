@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI API Complete Reference Guide - Tables Format</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+            line-height: 1.4;
+            margin: 0;
+            padding: 20px;
+            background: white;
+            color: #1a202c;
+        }
+        
+        .document-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 28px;
+        }
+        
+        h2 {
+            color: #2980b9;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-top: 30px;
+            font-size: 22px;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #16a085;
+            margin-top: 20px;
+            font-size: 18px;
+            page-break-after: avoid;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 11pt;
+            page-break-inside: avoid;
+        }
+        
+        th {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 8px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #34495e;
+        }
+        
+        td {
+            padding: 8px;
+            border: 1px solid #bdc3c7;
+            vertical-align: top;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 9pt;
+            font-weight: bold;
+        }
+        
+        .badge-free {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .badge-beta {
+            background: #e67e22;
+            color: white;
+        }
+        
+        .badge-legacy {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .badge-paid {
+            background: #3498db;
+            color: white;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 9pt;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            font-size: 9pt;
+            color: #7f8c8d;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            table {
+                page-break-inside: avoid;
+            }
+            
+            h2, h3 {
+                page-break-after: avoid;
+            }
+        }
+        
+        .print-btn {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .print-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="document-container">
+    <div class="no-print" style="text-align: right; margin-bottom: 20px;">
+        <button class="print-btn" onclick="window.print()">
+            📄 Save as PDF / Print
+        </button>
+        <button class="print-btn" style="background: #27ae60;" onclick="downloadDoc()">
+            📥 Download as Word
+        </button>
+    </div>
+    
+    <div id="content-to-print">
+        <h1>OpenAI API Complete Reference Guide</h1>
+        <p><strong>Version:</strong> 1.0 | <strong>Last Updated:</strong> March 26, 2026 | <strong>Format:</strong> Comprehensive Table Reference</p>
+        <p>This document provides a complete reference for all OpenAI API endpoints, their purposes, parameters, pricing, and use cases in an easy-to-read table format.</p>
+        
+        <!-- ==================== SECTION 1: CORE MODELS ==================== -->
+        <h2>1. Core AI Models & Text Generation</h2>
+        
+        <h3>Chat Completions API</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="20%">Purpose</th>
+                    <th width="25%">Key Models</th>
+                    <th width="30%">Pricing (per 1M tokens)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/chat/completions</code></td>
+                    <td>Primary text generation for conversational AI, code, analysis</td>
+                    <td>GPT-5.4, GPT-4.1, GPT-4.1-mini, o3, o4-mini</td>
+                    <td>GPT-5.4: $2.50 in / $15 out<br>GPT-4.1: $2.00 / $8.00<br>GPT-4.1-mini: $0.40 / $1.60</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/responses/create</code></td>
+                    <td>Advanced reasoning and agentic workflows</td>
+                    <td>GPT-5, GPT-5.4</td>
+                    <td>Same as base models + tool costs</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/completions</code></td>
+                    <td>Legacy text completion (deprecating)</td>
+                    <td>GPT-3.5-turbo-instruct</td>
+                    <td>$1.50 in / $2.00 out</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Parameter</th>
+                    <th width="35%">Description</th>
+                    <th width="40%">Example / Range</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>temperature</code></td><td>Controls randomness in output</td><td>0.0 (deterministic) to 2.0 (creative)</td></tr>
+                <tr><td><code>max_tokens</code></td><td>Maximum response length</td><td>1 - 16,384 tokens</td></tr>
+                <tr><td><code>stream</code></td><td>Enable real-time token streaming</td><td>true / false</td></tr>
+                <tr><td><code>response_format</code></td><td>Structured output format</td><td><code>{"type": "json_object"}</code></td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 2: AUDIO APIS ==================== -->
+        <h2>2. Audio Processing APIs</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="20%">Endpoint</th>
+                    <th width="25%">Purpose</th>
+                    <th width="20%">Models</th>
+                    <th width="20%">Supported Formats</th>
+                    <th width="15%">Pricing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/audio/transcriptions</code></td>
+                    <td>Convert speech to text (100+ languages)</td>
+                    <td>whisper-1</td>
+                    <td>mp3, mp4, wav, webm, m4a, flac</td>
+                    <td>$0.006 / minute</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/audio/translations</code></td>
+                    <td>Translate audio to English</td>
+                    <td>whisper-1</td>
+                    <td>Same as above</td>
+                    <td>$0.006 / minute</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/audio/speech</code></td>
+                    <td>Convert text to natural speech</td>
+                    <td>tts-1, tts-1-hd</td>
+                    <td>MP3 output</td>
+                    <td>$0.015 / 1,000 chars</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Text-to-Speech Voices</h3>
+        <table>
+            <thead>
+                <tr><th width="20%">Voice</th><th width="30%">Style</th><th width="50%">Best For</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>alloy</td><td>Neutral, balanced</td><td>General purpose, announcements</td></tr>
+                <tr><td>echo</td><td>Warm, engaging</td><td>Conversational AI, storytelling</td></tr>
+                <tr><td>fable</td><td>British accent</td><td>Narration, audiobooks</td></tr>
+                <tr><td>onyx</td><td>Deep, authoritative</td><td>Professional voiceovers</td></tr>
+                <tr><td>nova</td><td>Friendly, energetic</td><td>Virtual assistants, customer service</td></tr>
+                <tr><td>shimmer</td><td>Clear, professional</td><td>Educational content, presentations</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 3: IMAGE APIS ==================== -->
+        <h2>3. Image & Vision APIs</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="25%">Purpose</th>
+                    <th width="20%">Models</th>
+                    <th width="15%">Sizes</th>
+                    <th width="15%">Pricing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/images/generations</code></td>
+                    <td>Generate images from text</td>
+                    <td>dall-e-3</td>
+                    <td>1024x1024, 1792x1024, 1024x1792</td>
+                    <td>$0.04-$0.12 / image</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/images/edits</code></td>
+                    <td>Edit images with masks</td>
+                    <td>dall-e-2</td>
+                    <td>1024x1024</td>
+                    <td>$0.018 / image</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/images/variations</code></td>
+                    <td>Create variations of images</td>
+                    <td>dall-e-2</td>
+                    <td>1024x1024</td>
+                    <td>$0.018 / image</td>
+                </tr>
+                <tr>
+                    <td><code>Vision in Chat</code></td>
+                    <td>Analyze images, OCR, visual Q&A</td>
+                    <td>GPT-4.1, GPT-5.4</td>
+                    <td>Image tokens: 85-170 per image</td>
+                    <td>Token-based pricing</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Image Quality Options</h3>
+        <table>
+            <thead><tr><th>Quality</th><th>Description</th><th>Additional Cost</th></tr></thead>
+            <tbody>
+                <tr><td>standard</td><td>Standard quality, faster generation</td><td>Base price</td></tr>
+                <tr><td>hd</td><td>Higher detail, sharper images</td><td>+$0.08 per image</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 4: EMBEDDINGS ==================== -->
+        <h2>4. Embeddings & Vector Search</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Endpoint</th>
+                    <th width="35%">Purpose</th>
+                    <th width="20%">Models</th>
+                    <th width="15%">Pricing (1M tokens)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/embeddings</code></td>
+                    <td>Convert text to vector representations for semantic search</td>
+                    <td>text-embedding-3-large<br>text-embedding-3-small</td>
+                    <td>Large: $0.13<br>Small: $0.02</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Embedding Dimensions</h3>
+        <table>
+            <thead><tr><th>Model</th><th>Default Dimensions</th><th>Customizable</th></tr></thead>
+            <tbody>
+                <tr><td>text-embedding-3-large</td><td>3,072</td><td>Yes (down to 256)</td></tr>
+                <tr><td>text-embedding-3-small</td><td>1,536</td><td>Yes (down to 256)</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 5: BATCH API ==================== -->
+        <h2>5. Batch & Bulk Processing</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="25%">Purpose</th>
+                    <th width="20%">Max Batch Size</th>
+                    <th width="15%">Processing Time</th>
+                    <th width="15%">Discount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/batch</code></td>
+                    <td>Process large volumes asynchronously</td>
+                    <td>50,000 requests</td>
+                    <td>24 hours</td>
+                    <td><span class="badge badge-free">50% OFF</span></td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/files</code></td>
+                    <td>Upload files for batch processing</td>
+                    <td>2GB per file</td>
+                    <td>Immediate</td>
+                    <td>Standard rates</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 6: FINE-TUNING ==================== -->
+        <h2>6. Fine-Tuning & Custom Models</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="25%">Purpose</th>
+                    <th width="25%">Trainable Models</th>
+                    <th width="25%">Training Pricing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/fine_tuning/jobs</code></td>
+                    <td>Create custom models on your data</td>
+                    <td>GPT-4.1-mini, GPT-4.1, GPT-4o</td>
+                    <td>$5-$25 per model</td>
+                </tr>
+                <tr>
+                    <td><code>GET /v1/fine_tuning/jobs/{id}</code></td>
+                    <td>Check fine-tuning status</td>
+                    <td>-</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/fine_tuning/jobs/{id}/cancel</code></td>
+                    <td>Cancel active fine-tuning</td>
+                    <td>-</td>
+                    <td>Free</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Fine-Tuned Models Usage Pricing</h3>
+        <table>
+            <thead><tr><th>Base Model</th><th>Input (per 1M)</th><th>Output (per 1M)</th></tr></thead>
+            <tbody>
+                <tr><td>GPT-4.1-mini</td><td>$0.28 (30% off)</td><td>$1.12 (30% off)</td></tr>
+                <tr><td>GPT-4.1</td><td>$1.40 (30% off)</td><td>$5.60 (30% off)</td></tr>
+                <tr><td>GPT-4o</td><td>$1.75 (30% off)</td><td>$7.00 (30% off)</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 7: MODERATION ==================== -->
+        <h2>7. Moderation & Safety</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="35%">Purpose</th>
+                    <th width="20%">Categories Detected</th>
+                    <th width="20%">Pricing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/moderations</code></td>
+                    <td>Detect harmful or inappropriate content</td>
+                    <td>11 categories (hate, harassment, self-harm, sexual, violence)</td>
+                    <td><span class="badge badge-free">FREE</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>Content Moderation Categories</h3>
+        <table>
+            <thead><tr><th width="33%">Category</th><th width="34%">Category</th><th width="33%">Category</th></tr></thead>
+            <tbody>
+                <tr>
+                    <td>hate</td><td>harassment</td><td>self-harm</td>
+                </tr>
+                <tr>
+                    <td>hate/threatening</td><td>harassment/threatening</td><td>self-harm/intent</td>
+                </tr>
+                <tr>
+                    <td>sexual</td><td>violence</td><td>self-harm/instructions</td>
+                </tr>
+                <tr>
+                    <td>sexual/minors</td><td>violence/graphic</td><td>-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 8: REALTIME API ==================== -->
+        <h2>8. Realtime & Streaming APIs</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="20%">Protocol</th>
+                    <th width="25%">Purpose</th>
+                    <th width="15%">Latency</th>
+                    <th width="15%">Models</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>wss://api.openai.com/v1/realtime</code></td>
+                    <td>WebSocket</td>
+                    <td>Real-time voice conversations</td>
+                    <td>&lt;100ms</td>
+                    <td>gpt-4o-realtime</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/chat/completions?stream=true</code></td>
+                    <td>HTTP/SSE</td>
+                    <td>Token-by-token text streaming</td>
+                    <td>Variable</td>
+                    <td>All models</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 9: COMPUTER USE ==================== -->
+        <h2>9. Computer Use & Automation <span class="badge badge-beta">BETA</span></h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="35%">Purpose</th>
+                    <th width="25%">Capabilities</th>
+                    <th width="15%">Models</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>POST /v1/chat/completions</code> with computer_use tool</td>
+                    <td>AI control of computers and browsers</td>
+                    <td>Browser automation, desktop interaction, UI testing</td>
+                    <td>GPT-5.4</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/codex/cloud/tasks</code></td>
+                    <td>Parallel coding task execution</td>
+                    <td>Refactoring, code generation, testing</td>
+                    <td>GPT-5-codex</td>
+                </tr>
+                <tr>
+                    <td><code>POST /v1/codex/reviews</code></td>
+                    <td>Automated code review</td>
+                    <td>PR analysis, bug detection, security scanning</td>
+                    <td>GPT-5-codex</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 10: FILE MANAGEMENT ==================== -->
+        <h2>10. File Management</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Endpoint</th>
+                    <th width="35%">Purpose</th>
+                    <th width="20%">Max Size</th>
+                    <th width="20%">Supported Formats</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><code>POST /v1/files</code></td><td>Upload files for processing</td><td>2GB</td><td>JSONL, images, PDF, audio, video</td></tr>
+                <tr><td><code>GET /v1/files</code></td><td>List all uploaded files</td><td>-</td><td>-</td></tr>
+                <tr><td><code>DELETE /v1/files/{id}</code></td><td>Remove uploaded files</td><td>-</td><td>-</td></tr>
+                <tr><td><code>GET /v1/files/{id}/content</code></td><td>Download file content</td><td>-</td><td>-</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 11: COMPLETE PRICING TABLE ==================== -->
+        <h2>11. Complete Pricing Overview</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="30%">Model</th>
+                    <th width="35%">Input Price (per 1M tokens)</th>
+                    <th width="35%">Output Price (per 1M tokens)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>GPT-5.4</strong></td><td>$2.50</td><td>$15.00</td></tr>
+                <tr><td><strong>GPT-5</strong></td><td>$1.25</td><td>$10.00</td></tr>
+                <tr><td><strong>GPT-4.1</strong></td><td>$2.00</td><td>$8.00</td></tr>
+                <tr><td><strong>GPT-4.1-mini</strong></td><td>$0.40</td><td>$1.60</td></tr>
+                <tr><td><strong>GPT-4.1-nano</strong></td><td>$0.10</td><td>$0.40</td></tr>
+                <tr><td><strong>o3</strong></td><td>$2.00</td><td>$8.00</td></tr>
+                <tr><td><strong>o4-mini</strong></td><td>$1.10</td><td>$4.40</td></tr>
+                <tr><td><strong>Whisper</strong></td><td colspan="2">$0.006 / minute</td></tr>
+                <tr><td><strong>DALL·E 3</strong></td><td colspan="2">$0.04 - $0.12 per image</td></tr>
+                <tr><td><strong>Embeddings (Large)</strong></td><td colspan="2">$0.13 per 1M tokens</td></tr>
+                <tr><td><strong>Embeddings (Small)</strong></td><td colspan="2">$0.02 per 1M tokens</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 12: QUICK REFERENCE ==================== -->
+        <h2>12. Quick Reference: When to Use Each API</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="40%">Task</th>
+                    <th width="60%">Best API</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Build a chatbot</td><td><code>/chat/completions</code></td></tr>
+                <tr><td>Transcribe meeting</td><td><code>/audio/transcriptions</code></td></tr>
+                <tr><td>Generate images</td><td><code>/images/generations</code></td></tr>
+                <tr><td>Search documents</td><td><code>/embeddings</code> + vector DB</td></tr>
+                <tr><td>Process 10k emails</td><td><code>/batch</code></td></tr>
+                <tr><td>Build custom AI model</td><td><code>/fine_tuning/jobs</code></td></tr>
+                <tr><td>Automate browser tasks</td><td><code>/chat/completions</code> with computer_use</td></tr>
+                <tr><td>Filter toxic content</td><td><code>/moderations</code></td></tr>
+                <tr><td>Voice assistant app</td><td>Realtime WebSocket API</td></tr>
+                <tr><td>Code refactoring at scale</td><td><code>/codex/cloud/tasks</code></td></tr>
+                <tr><td>Text to speech</td><td><code>/audio/speech</code></td></tr>
+                <tr><td>Analyze images</td><td><code>/chat/completions</code> with vision</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 13: AUTHENTICATION ==================== -->
+        <h2>13. Authentication Methods</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th width="25%">Key Type</th>
+                    <th width="35%">Format</th>
+                    <th width="40%">Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Project API Key</td><td><code>sk-proj-...</code></td><td>Production apps - scoped to single project</td></tr>
+                <tr><td>User API Key</td><td><code>sk-...</code></td><td>Personal development - full organization access</td></tr>
+                <tr><td>Service Account</td><td><code>sk-svcacct-...</code></td><td>CI/CD pipelines - server-to-server</td></tr>
+            </tbody>
+        </table>
+        
+        <!-- ==================== SECTION 14: BASE URL ==================== -->
+        <h2>14. API Base Information</h2>
+        
+        <table>
+            <thead><tr><th width="30%">Item</th><th width="70%">Value</th></tr></thead>
+            <tbody>
+                <tr><td>Base URL</td><td><code>https://api.openai.com/v1</code></td></tr>
+                <tr><td>Authentication Header</td><td><code>Authorization: Bearer YOUR_API_KEY</code></td></tr>
+                <tr><td>Rate Limits</td><td>Varies by plan (typically 3,000-10,000 RPM)</td></tr>
+                <tr><td>Documentation</td><td><code>https://platform.openai.com/docs</code></td></tr>
+            </tbody>
+        </table>
+        
+        <div class="note">
+            <strong>📌 Important Notes:</strong>
+            <ul style="margin: 8px 0 0 20px;">
+                <li>All prices are in USD and subject to change</li>
+                <li>Batch API offers 50% discount for 24-hour processing window</li>
+                <li>Fine-tuned models get 30-50% discount on usage pricing</li>
+                <li>GPT-5.4 and GPT-5 are the latest models as of March 2026</li>
+                <li>Assistants API is being deprecated - migrate to Responses API</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p><strong>OpenAI API Complete Reference Guide</strong> - Table Format Version</p>
+            <p>Created: March 26, 2026 | For the latest updates, visit <a href="https://platform.openai.com/docs">platform.openai.com/docs</a></p>
+            <p>This document provides a comprehensive reference for all OpenAI API endpoints in an easy-to-read table format.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function downloadDoc() {
+        const content = document.getElementById('content-to-print').innerHTML;
+        const styles = document.querySelector('style').innerHTML;
+        
+        const docHtml = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>OpenAI API Complete Reference Guide</title>
+                <style>
+                    ${styles}
+                    body {
+                        padding: 40px;
+                        margin: 0;
+                    }
+                    .no-print {
+                        display: none;
+                    }
+                    .print-btn {
+                        display: none;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="document-container">
+                    ${content}
+                </div>
+            </body>
+            </html>
+        `;
+        
+        const blob = new Blob([docHtml], { type: 'application/msword' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.href = url;
+        link.download = 'OpenAI_API_Reference_Guide.doc';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+</script>
+
+</body>
+</html>
